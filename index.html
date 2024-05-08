@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edgar Filings Analyzer</title>
+</head>
+<body>
+    {% if cik %}
+        {% if has_results %}
+            <h1>Earnings Per Share for CIK {{ cik }}</h1>
+            {% if image_b64 %}
+                <img src="data:image/png;base64,{{ image_b64 }}">
+            {% endif %}
+            <p>Financial data retrieved successfully.</p>
+        {% else %}
+            <p>Error: {{ error }}</p>
+        {% endif %}
+    {% else %}
+        <form method="POST">
+            <label for="cik">Enter CIK:</label>
+            <input type="text" name="cik" id="cik">
+            <button type="submit">Submit</button>
+        </form>
+    {% endif %}
+</body>
+</html>
